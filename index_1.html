@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tse-An Shih — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #FCFCFB;
+    --bg-alt:   #F9F9F7;
+    --ink:      #2E2C27;
+    --ink-mid:  #6B6A63;
+    --ink-faint:#B4B3A8;
+    --rule:     #E4E3DC;
+    --amber:    #C9973A;
+    --slate:    #4A6580;
+    --amber-bg: rgba(201,151,58,0.08);
+    --slate-bg: rgba(74,101,128,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 52px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── WRAP ── */
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    padding-top: calc(52px + 5rem);
+    padding-bottom: 5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    color: var(--ink);
+    max-width: 16ch;
+    margin-bottom: 2rem;
+  }
+
+  h1 em {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--amber);
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-mid);
+    max-width: 54ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-meta-row {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .meta-value {
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+
+  .meta-value.available { color: var(--amber); font-weight: 400; }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    color: var(--ink-mid);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    border-radius: 2px;
+  }
+
+  .btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .btn.primary {
+    background: var(--slate);
+    border-color: var(--slate);
+    color: #fff;
+  }
+
+  .btn.primary:hover {
+    background: #3a5068;
+    border-color: #3a5068;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { border-bottom: 1px solid var(--rule); }
+
+  .section-intro {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  /* ── PROJECTS ── */
+  .project-card {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .project-card:last-child { border-bottom: none; }
+
+  .project-card.single-col {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+  }
+
+  .project-index {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+
+  h3.project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .project-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--slate);
+    margin-bottom: 1.1rem;
+  }
+
+  .project-desc {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    margin-bottom: 0.9rem;
+  }
+
+  .project-note {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    padding: 0.22rem 0.6rem;
+    border-radius: 2px;
+    background: var(--bg-alt);
+    color: var(--ink-mid);
+    border: 1px solid var(--rule);
+  }
+
+  .tag.amber { background: var(--amber-bg); border-color: rgba(201,151,58,0.25); color: var(--amber); }
+  .tag.slate { background: var(--slate-bg); border-color: rgba(74,101,128,0.25); color: var(--slate); }
+
+  .project-card-media img,
+  .project-card-media iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    display: block;
+  }
+
+  .project-card-media iframe {
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ── AUDIO PLAYER ── */
+  .audio-player {
+    width: 100%;
+    margin-bottom: 1rem;
+    accent-color: var(--slate);
+  }
+
+  .credits {
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.75rem 1rem;
+  }
+
+  .credits summary {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .credits summary::-webkit-details-marker { display: none; }
+
+  .credits summary::before {
+    content: '+ ';
+    color: var(--amber);
+  }
+
+  .credits[open] summary::before {
+    content: '– ';
+  }
+
+  .credits summary:hover { color: var(--ink); }
+
+  .credits-list {
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .credit-item {
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-mid);
+  }
+
+  .credit-item a {
+    color: var(--slate);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .credit-item a:hover { text-decoration: underline; }
+
+  .credit-license {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+  }
+
+  /* ── ABOUT ── */
+  #about .about-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--ink-mid);
+  }
+
+  .about-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .skills-group { margin-bottom: 2rem; }
+
+  .skills-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding-top: 0.5rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  .experience-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .experience-item:last-child { border-bottom: none; }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    padding-top: 0.2rem;
+  }
+
+  .exp-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    color: var(--slate);
+    margin-bottom: 0.65rem;
+  }
+
+  .exp-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--ink-mid);
+  }
+
+  /* ── CONTACT ── */
+  #contact .contact-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+    align-items: end;
+  }
+
+  .contact-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .contact-heading em {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--amber);
+  }
+
+  .contact-links { display: flex; flex-direction: column; }
+
+  .contact-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .contact-link:first-child { border-top: 1px solid var(--rule); }
+  .contact-link:hover { color: var(--slate); }
+
+  .contact-link-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    width: 56px;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg-alt);
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .footer-pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 720px) {
+    .wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+    nav { padding: 0 1.5rem; }
+    footer { padding: 1.5rem; }
+    .project-card { grid-template-columns: 1fr; gap: 1.5rem; }
+    #about .about-body { grid-template-columns: 1fr; gap: 2rem; }
+    .experience-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    #contact .contact-body { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-meta-row { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Tse-An Shih</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Interactive Systems · Sound Design · Spatial Audio</p>
+    <h1>Tse-An<br><em>Shih</em></h1>
+    <p class="hero-bio">
+      I build interactive and generative systems where sound is the primary medium — translating movement, data, and structure into what a listener hears.
+    </p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn" href="mailto:tseanshih@gmail.com">Get in Touch</a>
+      <a class="btn" href="https://github.com/tseanshih-rgb" target="_blank">GitHub</a>
+    </div>
+    <div class="hero-meta-row">
+      <div class="meta-item">
+        <span class="meta-label">Based in</span>
+        <span class="meta-value">Stockholm, SE</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Program</span>
+        <span class="meta-value">MSc Interactive Media Technology, KTH</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Focus</span>
+        <span class="meta-value">Interactive Systems · Generative Audio · Sound Design</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="meta-value available">Available for collaboration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-intro fade-in">
+      <p class="section-label">01 — Work</p>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-card-info">
+        <p class="project-index">001</p>
+        <h3 class="project-title">Bubbles of Interpersonal Interaction</h3>
+        <p class="project-subtitle">Proximity-Based Sonification Installation</p>
+        <p class="project-desc">
+          Real-time installation mapping interpersonal distance to harmonic consonance and movement speed to FM synthesis timbre. Integrates YOLOv8 body-tracking via OSC/UDP into a Max/MSP spatial audio processing chain.
+        </p>
+        <p class="project-note">★ Selected for exhibition at Tekniska museet, NAVET Student Festival 2026</p>
+        <div class="project-tags">
+          <span class="tag amber">Max/MSP</span>
+          <span class="tag">YOLOv8</span>
+          <span class="tag">OSC/UDP</span>
+          <span class="tag">FM Synthesis</span>
+          <span class="tag">Python</span>
+        </div>
+        <a href="https://github.com/tseanshih-rgb/Bubbles-of-Interpersonal-Interaction" target="_blank" class="btn">GitHub →</a>
+      </div>
+      <div class="project-card-media">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/B9SXV5q4DfM" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-card-info">
+        <p class="project-index">002</p>
+        <h3 class="project-title">Entropy Piano</h3>
+        <p class="project-subtitle">Generative Instrument in Pure Data</p>
+        <p class="project-desc">
+          A generative instrument where accumulated keystroke frequency destabilises sonic output over time. One-to-many input mapping translates keystrokes into randomised pitch deviation and FM synthesis timbre modulation, creating emergent performer-instrument interaction.
+        </p>
+        <div class="project-tags">
+          <span class="tag amber">Pure Data</span>
+          <span class="tag">FM Synthesis</span>
+          <span class="tag">Generative</span>
+          <span class="tag">HCI</span>
+        </div>
+        <a href="https://github.com/tseanshih-rgb/Entropy-piano" target="_blank" class="btn">GitHub →</a>
+      </div>
+      <div class="project-card-media">
+        <img src="images/entropy-piano.png" alt="Entropy Piano screenshot">
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-card-info">
+        <p class="project-index">003</p>
+        <h3 class="project-title">Color-to-Sound Mapping</h3>
+        <p class="project-subtitle">Real-time Chromatic Sonification in Python</p>
+        <p class="project-desc">
+          Perceptual mapping between colors and sonic parameters grounded in cross-modal color-sound association research. Real-time camera-based color detection with area-proportional volume scaling and adaptive threshold for environmental variation.
+        </p>
+        <div class="project-tags">
+          <span class="tag amber">Python</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Sonification</span>
+          <span class="tag">Cross-modal</span>
+        </div>
+        <a href="https://github.com/tseanshih-rgb/DT2213-colour_sound-instrument" target="_blank" class="btn">GitHub →</a>
+      </div>
+      <div class="project-card-media">
+        <img src="images/color-to-sound.png" alt="Color-to-Sound Mapping screenshot">
+      </div>
+    </div>
+
+    <div class="project-card single-col fade-in">
+      <div class="project-card-info">
+        <p class="project-index">004</p>
+        <h3 class="project-title">Sounds I Carried</h3>
+        <p class="project-subtitle">Multi-Object Distance Modeling in Spatial Audio</p>
+        <p class="project-desc">
+          A spatial soundscape built from the everyday sounds of Taiwan — a garbage truck playing <em>Für Elise</em>, neighbors gathering roadside to wait for it, the horn of a traditional ice-cream cart, a loudspeaker announcing window-screen repairs door to door, and the spotted doves and cicadas that filled my childhood. I left home at eighteen. Whenever I think of Taiwan, these are the sounds that echo back.
+        </p>
+        <audio class="audio-player" controls preload="metadata" src="audio/sounds-i-carried.mp3"></audio>
+        <div class="project-tags">
+          <span class="tag amber">Ableton Live</span>
+          <span class="tag">Spatial Audio</span>
+          <span class="tag">Distance Modeling</span>
+          <span class="tag">Sound Design</span>
+        </div>
+        <details class="credits">
+          <summary>Sound Credits</summary>
+          <div class="credits-list">
+            <div class="credit-item">
+              glass_replacement_guy_GaryBard.wav — <strong>GaryBard</strong><br>
+              <a href="https://freesound.org/s/65751/" target="_blank">freesound.org/s/65751</a><br>
+              <span class="credit-license">License: Attribution 4.0</span>
+            </div>
+            <div class="credit-item">
+              Small Squeeze Bulb Horn.aif — <strong>ideaph</strong><br>
+              <a href="https://freesound.org/s/269018/" target="_blank">freesound.org/s/269018</a><br>
+              <span class="credit-license">License: Attribution 3.0</span>
+            </div>
+            <div class="credit-item">
+              Yuanlin City Soundscape at 3 p.m. during Mandatory Quarantine, June 4th 2020 (Taiwan Garbage Truck Song 垃圾車) — <strong>SonnySoundOfTaiwan</strong><br>
+              <a href="https://freesound.org/s/521296/" target="_blank">freesound.org/s/521296</a><br>
+              <span class="credit-license">License: Attribution 3.0</span>
+            </div>
+            <div class="credit-item">
+              Noisy night market on the street side — <strong>lastraindrop</strong><br>
+              <a href="https://freesound.org/s/718917/" target="_blank">freesound.org/s/718917</a><br>
+              <span class="credit-license">License: Creative Commons 0</span>
+            </div>
+            <div class="credit-item">
+              Australian morning birds — <strong>elle-trudgett</strong><br>
+              <a href="https://freesound.org/s/147349/" target="_blank">freesound.org/s/147349</a><br>
+              <span class="credit-license">License: Creative Commons 0</span>
+            </div>
+            <div class="credit-item">
+              Cicadas — <strong>dethrok</strong><br>
+              <a href="https://freesound.org/s/272169/" target="_blank">freesound.org/s/272169</a><br>
+              <span class="credit-license">License: Creative Commons 0</span>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-intro fade-in">
+      <p class="section-label">02 — About</p>
+      <h2>Background</h2>
+    </div>
+    <div class="about-body">
+      <div class="about-text fade-in">
+        I work at the intersection of <strong>interactive systems</strong>, <strong>generative processes</strong>, and <strong>sound</strong>. My practice centers on designing experiences where data, movement, and structure become audible — sound as one of the primary media I build with, alongside programming and interaction design.
+        <br><br>
+        Currently pursuing an MSc in Interactive Media Technology at KTH Royal Institute of Technology, Stockholm. Previously spent two years as a Senior Research Executive at Ipsos, designing and executing 50+ research projects across Asia.
+      </div>
+      <div class="fade-in">
+        <div class="skills-group">
+          <p class="skills-group-label">Audio / Music Technology</p>
+          <div class="skills-list">
+            <span class="tag">Ableton Live</span>
+            <span class="tag">Max/MSP</span>
+            <span class="tag">Pure Data</span>
+            <span class="tag">FM Synthesis</span>
+            <span class="tag">OSC/UDP</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <p class="skills-group-label">Programming</p>
+          <div class="skills-list">
+            <span class="tag">Python</span>
+            <span class="tag">C# (Unity)</span>
+            <span class="tag">Java (Processing)</span>
+            <span class="tag">MATLAB</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <p class="skills-group-label">Design & Research</p>
+          <div class="skills-list">
+            <span class="tag">Figma</span>
+            <span class="tag">User Research</span>
+            <span class="tag">Experimental Design</span>
+            <span class="tag">Usability Evaluation</span>
+            <span class="tag">Statistical Analysis</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <p class="skills-group-label">Education</p>
+          <div class="skills-list">
+            <span class="tag slate">KTH — MSc IMT</span>
+            <span class="tag">BNU — BSc Psychology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-intro fade-in">
+      <p class="section-label">03 — History</p>
+      <h2>Experience</h2>
+    </div>
+
+    <div class="experience-item fade-in">
+      <div class="exp-date">Aug 2025 — Present</div>
+      <div>
+        <p class="exp-title">MSc Interactive Media Technology</p>
+        <p class="exp-org">KTH Royal Institute of Technology · Stockholm, SE</p>
+        <p class="exp-desc">Sound in Interaction · Musical Communication & Music Technology · Human Perception for Information Technology · Programming for Data Science · Computer Graphics & Interaction</p>
+      </div>
+    </div>
+
+    <div class="experience-item fade-in">
+      <div class="exp-date">Jul 2022 — Aug 2024</div>
+      <div>
+        <p class="exp-title">Senior Research Executive</p>
+        <p class="exp-org">Ipsos LTD. · Beijing, CN</p>
+        <p class="exp-desc">Designed and executed 50+ research projects. Applied statistical analysis and interview protocols across client deliverables spanning consumer insights, UX evaluation, and strategic advisory.</p>
+      </div>
+    </div>
+
+    <div class="experience-item fade-in">
+      <div class="exp-date">Aug 2018 — Jun 2022</div>
+      <div>
+        <p class="exp-title">BSc Psychology — GPA 3.5/4</p>
+        <p class="exp-org">Beijing Normal University · Beijing, CN</p>
+        <p class="exp-desc">Cognitive Psychology · Engineering Psychology · Experimental Psychology · Multi-Factor Experimental Design</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-body">
+      <div class="fade-in">
+        <p class="section-label" style="margin-bottom:1rem;">04 — Contact</p>
+        <h2 class="contact-heading">Let's work<br><em>together.</em></h2>
+      </div>
+      <div class="contact-links fade-in">
+        <a class="contact-link" href="mailto:tseanshih@gmail.com">
+          <span class="contact-link-label">Email</span>
+          tseanshih@gmail.com
+        </a>
+        <a class="contact-link" href="https://github.com/tseanshih-rgb" target="_blank">
+          <span class="contact-link-label">GitHub</span>
+          tseanshih-rgb
+        </a>
+        <a class="contact-link" href="#">
+          <span class="contact-link-label">Location</span>
+          Stockholm, Sweden
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Tse-An Shih</p>
+  <div class="footer-pip"></div>
+  <p>Interactive Media Technology · KTH</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
