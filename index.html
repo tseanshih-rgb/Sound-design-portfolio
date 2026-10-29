@@ -260,6 +260,92 @@
     margin-bottom: 1rem;
   }
 
+  .project-more { margin-top: 1.25rem; }
+
+  .project-more summary {
+    display: inline-block;
+    padding: 0.5rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    cursor: pointer;
+    list-style: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .project-more summary::-webkit-details-marker { display: none; }
+  .project-more summary:hover { border-color: var(--ink); color: var(--ink); }
+  .project-more summary .less { display: none; }
+  .project-more[open] summary .more { display: none; }
+  .project-more[open] summary .less { display: inline; }
+
+  .project-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .project-gallery figure { margin: 0; }
+  .project-gallery figure.wide { grid-column: 1 / -1; }
+
+  .project-gallery img {
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    border: 1px solid var(--rule);
+    object-fit: cover;
+  }
+
+  .project-gallery figcaption {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin-top: 0.3rem;
+  }
+
+  .project-section { margin-top: 1.5rem; }
+
+  .project-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .project-section .project-desc { margin-bottom: 0.6rem; }
+
+  .project-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .project-list li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--ink-mid);
+  }
+
+  .project-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+  }
+
+  .project-list li strong { color: var(--ink); font-weight: 500; }
+
   .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -621,23 +707,58 @@
     <div class="project-card fade-in">
       <div class="project-card-info">
         <p class="project-index">001</p>
-        <h3 class="project-title">Bubbles of Interpersonal Interaction</h3>
+        <h3 class="project-title">Where We Meet in Resonance</h3>
         <p class="project-subtitle">Proximity-Based Sonification Installation</p>
         <p class="project-desc">
-          Real-time installation mapping interpersonal distance to harmonic consonance and movement speed to FM synthesis timbre. Integrates YOLOv8 body-tracking via OSC/UDP into a Max/MSP spatial audio processing chain.
+          A multi-person interactive sound installation that makes unspoken social distance audible. Visitors become the instrument: as they gather, their sounds converge toward harmony and resonance.
         </p>
-        <p class="project-note">★ Selected for exhibition at Tekniska museet, NAVET Student Festival 2026</p>
+        <p class="project-note">★ Selected for <em>Dream ex Machina</em>, exhibited at Tekniska museet in collaboration with NAVET</p>
         <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/B9SXV5q4DfM" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/GhTWPjP4Ivo" allowfullscreen loading="lazy"></iframe>
         </div>
+
+        <details class="project-more">
+          <summary><span class="more">See more</span><span class="less">See less</span></summary>
+        <div class="project-gallery">
+          <figure class="wide"><img src="images/resonance-1.jpg" alt="Where We Meet in Resonance at Tekniska museet: speaker, exhibition label and visitors in a red-lit room" loading="lazy"><figcaption>Photo: Gabi Kiryluk</figcaption></figure>
+          <figure class="wide"><img src="images/resonance-2.jpg" alt="Visitors moving through the installation space at Tekniska museet" loading="lazy"><figcaption>Photo: Helena Linder</figcaption></figure>
+        </div>
+
+        <div class="project-section">
+          <p class="project-section-label">Inspiration</p>
+          <p class="project-desc">
+            I want visitors to wonder: how do I affect those around me, and how do they affect me? Where should I place myself in this web of co-presence? After moving to Stockholm, I became newly aware of those unspoken moments between people, something I had taken for granted but only noticed once I became an outsider. I began to feel the quiet undercurrent of how we place ourselves and one another in shared space. That small, careful attunement is precious to me, and I want to share with visitors.
+          </p>
+        </div>
+
+        <div class="project-section">
+          <p class="project-section-label">Design Concept</p>
+          <p class="project-desc">
+            Each visitor is a single voice. As people move closer, their pitches glide toward a shared chord and the timbre clears; as they drift apart, the sound grows dissonant and diffuse. Movement speed shapes loudness and brightness.
+          </p>
+        </div>
+
+        <div class="project-section">
+          <p class="project-section-label">Technical Details</p>
+          <ul class="project-list">
+            <li><strong>Tracking.</strong> A Python script adapted from an existing YOLOv8 model sends visitors' positions and group measures to Max/MSP over OSC/UDP.</li>
+            <li><strong>Pitch and timbre.</strong> Each voice glides toward a chord-tone target as the group gathers; speed drives amplitude and brightness.</li>
+            <li><strong>Spatial audio.</strong> Each person's position is converted to an azimuth and panned across a four-speaker array.</li>
+            <li><strong>Sound design.</strong> The Max output is routed into Ableton Live for sound design and returned to Max for the final four-channel mix.</li>
+          </ul>
+        </div>
+
         <div class="project-tags">
           <span class="tag amber">Max/MSP</span>
           <span class="tag">YOLOv8</span>
           <span class="tag">OSC/UDP</span>
-          <span class="tag">FM Synthesis</span>
           <span class="tag">Python</span>
+          <span class="tag">Ableton Live</span>
+          <span class="tag">Spatial Audio</span>
+          <span class="tag">Generative Audio</span>
         </div>
-        <a href="https://github.com/tseanshih-rgb/Bubbles-of-Interpersonal-Interaction" target="_blank" class="btn">GitHub →</a>
+        <a href="https://github.com/tseanshih-rgb/Where-We-Meet-in-Resonance" target="_blank" class="btn">GitHub →</a>
+        </details>
       </div>
     </div>
 
